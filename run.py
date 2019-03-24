@@ -10,6 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import ctypes
 
 
 '''#####################################################################################################################
@@ -23,6 +24,7 @@ from selenium.webdriver.common.by import By
 url = 'https://api.myjson.com/bins/11tt7a'
 headers = {'content-type': 'application/json'}
 temp="nothing"
+
 
 while True:
 
@@ -40,6 +42,14 @@ while True:
             response = requests.put(url, json=payload)
             print(response.status_code)
             os.system('shutdown /p /f')
+            exit()
+
+
+        elif "lock" in data_received_string:
+            payload = {"sup_p":"PC Has Been Locked"}
+            response = requests.put(url,json=payload)
+            print(response.status_code)
+            ctypes.windll.user32.LockWorkStation()
 
         elif "send me file" in data_received_string:
             payload = {"sup_p": "I am on it"}
