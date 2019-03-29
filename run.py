@@ -75,7 +75,7 @@ while True:
             msg.attach(p)
             s = smtplib.SMTP('smtp.gmail.com', 587)
             s.starttls()
-            s.login(sender_email, "emophheg@24")
+            s.login(sender_email, "e*op**e*@24")
             text = msg.as_string()
             print("Sending Mail...")
             s.sendmail(sender_email, receiver_email, text)
